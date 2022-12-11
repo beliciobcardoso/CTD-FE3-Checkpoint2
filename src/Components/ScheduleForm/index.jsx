@@ -1,25 +1,33 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import styles from './ScheduleForm.module.css';
 
 const ScheduleForm = () => {
   const { theme } = useTheme();
-  const aiUrl = 'https://dhodonto.ctdprojetos.com.br';
+  const [pacientes, setPacientes] = useState([]);
+  const [dentistas, setDentistas] = useState([]);
+  const apiUrl = 'https://dhodonto.ctdprojetos.com.br';
+
+  function listaDentista() {
+    fetch(`${apiUrl}/dentista`).then((response) => {
+      response.json().then((data) => setDentistas(data));
+    });
+  }
 
   function listaPaciente() {
-    fetch(`${aiUrl}/paciente`).then((response) => {
-      response.json().then((data) => {
-        console.log(data.body);
-      });
+    fetch(`${apiUrl}/paciente`).then((response) => {
+      response.json().then((data) => setPacientes(data.body));
     });
   }
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
     //e pacientes e carregar os dados em 2 estados diferentes
+    listaDentista();
     listaPaciente();
   }, []);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     //Nesse handlesubmit você deverá usar o preventDefault,
     //obter os dados do formulário e enviá-los no corpo da requisição
     //para a rota da api que marca a consulta
@@ -40,12 +48,11 @@ const ScheduleForm = () => {
               </label>
               <select className='form-select' name='dentist' id='dentist'>
                 {/*Aqui deve ser feito um map para listar todos os dentistas*/}
-                <option
-                  key={'Matricula do dentista'}
-                  value={'Matricula do dentista'}
-                >
-                  {`Nome Sobrenome`}
-                </option>
+                {dentistas.map((dentista) => (
+                  <option key={dentista.matricula} value={dentista.matricula}>
+                    {dentista.nome}
+                  </option>
+                ))}
               </select>
             </div>
             <div className='col-sm-12 col-lg-6'>
@@ -54,12 +61,11 @@ const ScheduleForm = () => {
               </label>
               <select className='form-select' name='patient' id='patient'>
                 {/*Aqui deve ser feito um map para listar todos os pacientes*/}
-                <option
-                  key={'Matricula do paciente'}
-                  value={'Matricula do paciente'}
-                >
-                  {`Nome Sobrenome`}
-                </option>
+                {pacientes.map((paciente) => (
+                  <option key={paciente.matricula} value={paciente.matricula}>
+                    {paciente.nome}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
