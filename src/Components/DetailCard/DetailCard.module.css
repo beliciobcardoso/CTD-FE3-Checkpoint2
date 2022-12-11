@@ -1,0 +1,12 @@
+.cardDark {
+  background-color: #5e5e5e96;
+  border: 0.5px solid #383838;
+}
+
+.cardDark:hover {
+  border: 0.5px solid #ced98e;
+}
+
+.button {
+  margin-top: 2rem;
+}
