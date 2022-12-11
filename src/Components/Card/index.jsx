@@ -1,7 +1,7 @@
 import { useTheme } from '../../hooks/useTheme';
 import styles from './Card.module.css';
 
-const Card = () => {
+const Card = (props) => {
   const { theme } = useTheme();
   return (
     <>
@@ -16,9 +16,10 @@ const Card = () => {
         <div className={`card-body ${styles.CardBody}`}>
           {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
           que vem da API */}
+          {`${props.dentista.nome}  ${props.dentista.sobrenome}`}
           <a href={`/Detail`}>
             <h5 className={`card-title ${styles.title}`}>
-              Nome e Sobrenome do dentista
+              <p>{props.dentista.usuario.username}</p>
             </h5>
           </a>
         </div>
