@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
+import { apiUrl } from '../../util/urlApi';
 import ScheduleFormModal from '../ScheduleFormModal';
 import styles from './DetailCard.module.css';
 
@@ -8,8 +9,6 @@ const DetailCard = () => {
   const { theme } = useTheme();
   const { matricula } = useParams();
   const [dentista, setDentista] = useState([]);
-
-  const apiUrl = 'https://dhodonto.ctdprojetos.com.br';
 
   useEffect(() => {
     fetch(`${apiUrl}/dentista?matricula=${matricula}`).then((response) => {
