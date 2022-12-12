@@ -4,11 +4,16 @@ import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const { theme, changeTheme } = useTheme();
-  const [changeIcon, setChangeIcon] = useState(true);
+  const iconLocalStorage = localStorage.getItem('icon');
+  const [changeIcon, setChangeIcon] = useState(
+    iconLocalStorage === undefined ? false : iconLocalStorage
+  );
 
   function change() {
-    setChangeIcon(!changeIcon);
+    let changeIconNew = !changeIcon;
+    setChangeIcon(changeIconNew);
     if (theme === 'dark') {
+      localStorage.setItem('icon', changeIconNew);
       changeTheme('light');
     } else {
       changeTheme('dark');
