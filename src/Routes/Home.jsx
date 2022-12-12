@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import Card from '../Components/Card';
+import { apiUrl } from '../util/urlApi';
 
 const Home = () => {
   const [dentistas, setDentistas] = useState([]);
 
-  const apiUrl = 'https://dhodonto.ctdprojetos.com.br';
   useEffect(() => {
     fetch(`${apiUrl}/dentista`).then((response) => {
       response.json().then((data) => setDentistas(data));

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import styles from './ScheduleForm.module.css';
+import { apiUrl } from '../../util/urlApi';
 
 const ScheduleForm = () => {
   const { theme } = useTheme();
   const [pacientes, setPacientes] = useState([]);
   const [dentistas, setDentistas] = useState([]);
-  const apiUrl = 'https://dhodonto.ctdprojetos.com.br';
 
   function listaDentista() {
     fetch(`${apiUrl}/dentista`).then((response) => {
