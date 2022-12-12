@@ -1,19 +1,27 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const { theme, changeTheme } = useTheme();
-  const [changeIcon, setChangeIcon] = useState(true);
+  const [icon, setIcon] = useState()
 
-  function change() {
-    setChangeIcon(!changeIcon);
+  function change() { 
     if (theme === 'dark') {
       changeTheme('light');
     } else {
       changeTheme('dark');
     }
   }
+
+useEffect(()=>{
+  if (theme === 'dark') {   
+    setIcon(false)
+  }else{   
+    setIcon(true)
+  }
+},[theme])
 
   return (
     <header className='sticky-top'>
@@ -71,7 +79,7 @@ const Navbar = () => {
                   onClick={change}
                   className={`btn btn-${theme} ${styles.btnStyle}`}
                 >
-                  {changeIcon ? '🌙' : '😎'}
+                  {icon ? '🌙' : '😎'}
                 </button>
               </li>
             </ul>
