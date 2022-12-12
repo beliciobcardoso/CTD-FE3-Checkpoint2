@@ -5,6 +5,23 @@ import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const { theme, changeTheme } = useTheme();
+  const [icon, setIcon] = useState();
+
+  function change() {
+    if (theme === 'dark') {
+      changeTheme('light');
+    } else {
+      changeTheme('dark');
+    }
+  }
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      setIcon(false);
+    } else {
+      setIcon(true);
+    }
+  }, [theme]);
 
   return (
     <header className='sticky-top'>
