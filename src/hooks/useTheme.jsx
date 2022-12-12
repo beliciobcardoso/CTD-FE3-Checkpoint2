@@ -1,18 +1,18 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext } from "react";
 
 const ThemeContext = createContext();
 
 export function ThemeProvider(props) {
-  const themeLocalStorage = localStorage.getItem('theme');
+  const themeLocalStorage = localStorage.getItem("theme");
 
   const [theme, setTheme] = useState(
-    themeLocalStorage === null ? 'dark' : themeLocalStorage
+    themeLocalStorage === null ? "dark" : themeLocalStorage
   );
 
   function changeTheme(themeRecieved) {
     if (themeRecieved !== theme) {
       setTheme(themeRecieved);
-      localStorage.setItem('theme', themeRecieved);
+      localStorage.setItem("theme", themeRecieved);
     }
   }
 
