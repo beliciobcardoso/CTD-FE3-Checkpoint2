@@ -46,7 +46,7 @@ const DetailCard = () => {
               </li>
               <li className='list-group-item'>
                 {/* {console.log(dentista)} */}
-                Usuário: {'dentista.usuario.username'}
+                Usuário: {'denti.usuario'}
               </li>
             </ul>
             <div className='text-center'>
