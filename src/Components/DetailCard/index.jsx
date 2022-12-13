@@ -19,7 +19,7 @@ const DetailCard = () => {
     fetch(`${apiUrl}/dentista?matricula=${matricula}`).then((response) => {
       response.json().then((data) => setDentista(data));
     });
-  }, []);
+  }, [matricula]);
 
   return (
     <>
