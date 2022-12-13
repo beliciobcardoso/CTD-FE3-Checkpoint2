@@ -12,14 +12,8 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    //Nesse handlesubmit você deverá usar o preventDefault,
     e.preventDefault();
-    //enviar os dados do formulário e enviá-los no corpo da requisição
-    //para a rota da api que faz o login /auth
-    //lembre-se que essa rota vai retornar um Bearer Token e o mesmo deve ser salvo
-    //no localstorage para ser usado em chamadas futuras
-    //Com tudo ocorrendo corretamente, o usuário deve ser redirecionado a página principal,com react-router
-    //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
+
     const userData = {
       username: username,
       password: password,
