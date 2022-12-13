@@ -25,8 +25,6 @@ const Navbar = () => {
     }
   }
 
-  useEffect(() => console.log('EROOOO'));
-
   useEffect(() => {
     if (theme === 'dark') {
       setIcon(false);
