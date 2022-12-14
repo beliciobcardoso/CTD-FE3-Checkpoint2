@@ -26,8 +26,6 @@ const ScheduleForm = () => {
     });
   }
   useEffect(() => {
-    //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
-    //e pacientes e carregar os dados em 2 estados diferentes
     setAuthToken(token);
     listaDentista();
     listaPaciente();
@@ -38,11 +36,6 @@ const ScheduleForm = () => {
 
     console.log(matriculaDentista);
 
-    //Nesse handlesubmit você deverá usar o preventDefault,
-    //obter os dados do formulário e enviá-los no corpo da requisição
-    //para a rota da api que marca a consulta
-    //lembre-se que essa rota precisa de um Bearer Token para funcionar.
-    //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
     const consultData = {
       paciente: {
         matricula: matriculaPaciente,
