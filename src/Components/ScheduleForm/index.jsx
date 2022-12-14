@@ -34,8 +34,6 @@ const ScheduleForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(matriculaDentista);
-
     const consultData = {
       paciente: {
         matricula: matriculaPaciente,
