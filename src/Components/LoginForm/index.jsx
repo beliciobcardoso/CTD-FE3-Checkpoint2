@@ -3,12 +3,15 @@ import { useState } from 'react';
 import { apiUrl } from '../../util/urlApi';
 import styles from './Form.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useToken } from '../../hooks/useToken';
 
 const LoginForm = () => {
   const { theme } = useTheme();
-  // const [authToken, setAuthToken] = useState('');
+  const { changeToken } = useToken();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -32,9 +35,8 @@ const LoginForm = () => {
     fetch(`${apiUrl}/auth`, requestConfig).then((response) => {
       if (response.ok) {
         response.json().then((data) => {
-          localStorage.setItem('authToken', data.token);
+          changeToken(data.token);
           navigate('/home');
-          // setAuthToken(data.token);
           alert('Login realizado com Sucesso!');
         });
       } else {

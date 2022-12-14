@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme';
-import styles from './ScheduleForm.module.css';
 import { apiUrl } from '../../util/urlApi';
+import { useToken } from '../../hooks/useToken';
+import styles from './ScheduleForm.module.css';
 
 const ScheduleForm = () => {
-  const token = localStorage.getItem('authToken');
-
   const { theme } = useTheme();
+  const { token } = useToken();
+
   const [pacientes, setPacientes] = useState([]);
   const [dentistas, setDentistas] = useState([]);
-  const [authToken, setAuthToken] = useState('');
   const [matriculaDentista, setMatriculaDentista] = useState('');
   const [matriculaPaciente, setMatriculaPaciente] = useState('');
   const [dateConsulta, setDateConsulta] = useState('');
@@ -26,10 +26,9 @@ const ScheduleForm = () => {
     });
   }
   useEffect(() => {
-    setAuthToken(token);
     listaDentista();
     listaPaciente();
-  }, [token]);
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,11 +43,11 @@ const ScheduleForm = () => {
       dataHoraAgendamento: dateConsulta,
     };
 
-    if (authToken !== null) {
+    if (token !== '') {
       const requestHeaders = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`,
+        Authorization: `Bearer ${token}`,
       };
 
       const requestConfig = {

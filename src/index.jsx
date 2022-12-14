@@ -13,6 +13,7 @@ import Login from './Routes/Login';
 import Home from './Routes/Home';
 import Detail from './Routes/Detail';
 import { ThemeProvider } from './hooks/useTheme';
+import { TokenProvider } from './hooks/useToken';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //Lembre-se de configurar suas rotas e seu contexto aqui
@@ -32,7 +33,9 @@ const appRouter = createBrowserRouter([
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={appRouter} />
+      <TokenProvider>
+        <RouterProvider router={appRouter} />
+      </TokenProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

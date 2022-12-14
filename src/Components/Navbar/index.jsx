@@ -2,20 +2,30 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
+import { useToken } from '../../hooks/useToken';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  const getAuthToken = localStorage.getItem('authToken');
+  const { token, changeToken } = useToken();
 
   const { theme, changeTheme } = useTheme();
   const [icon, setIcon] = useState();
+  const [login, setLogin] = useState();
 
   const navigate = useNavigate();
 
   function logout() {
-    localStorage.removeItem('authToken');
+    changeToken('');
     navigate('/');
   }
+
+  useEffect(() => {
+    if (token === '') {
+      setLogin(false);
+    } else {
+      setLogin(true);
+    }
+  }, [token]);
 
   function change() {
     if (theme === 'dark') {
@@ -79,12 +89,12 @@ const Navbar = () => {
                 {/* <a className='nav-link' href='/login'>
                   Login
                 </a> */}
-                {getAuthToken === null ? (
+                {login ? (
+                  <button onClick={() => logout()}>Logout</button>
+                ) : (
                   <a className='nav-link' href='/login'>
                     Login
                   </a>
-                ) : (
-                  <button onClick={() => logout()}>Logout</button>
                 )}
               </li>
               <li className={`nav-item`}>
