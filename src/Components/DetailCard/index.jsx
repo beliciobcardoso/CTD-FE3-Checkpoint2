@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
 import { apiUrl } from '../../util/urlApi';
+import ConsultModal from '../ConsultModal';
 import ScheduleFormModal from '../ScheduleFormModal';
 import styles from './DetailCard.module.css';
 
@@ -57,7 +58,7 @@ const DetailCard = () => {
                   </button>
                   <button
                     data-bs-toggle='modal'
-                    data-bs-target='#exampleModal'
+                    data-bs-target='#consultModal'
                     className={`btn btn-${theme} ${styles.button}`}
                   >
                     Lista consultas
@@ -67,6 +68,7 @@ const DetailCard = () => {
             </div>
           </section>
           <ScheduleFormModal />
+          <ConsultModal />
         </>
       ) : null}
     </>
