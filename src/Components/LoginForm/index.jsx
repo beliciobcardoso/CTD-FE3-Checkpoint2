@@ -60,6 +60,7 @@ const LoginForm = () => {
               className={`form-control ${styles.inputSpacing}`}
               placeholder='Login'
               name='login'
+              aria-label='login'
               onChange={(e) => setUsername(e.target.value)}
               required
             />
@@ -67,11 +68,13 @@ const LoginForm = () => {
               className={`form-control ${styles.inputSpacing}`}
               placeholder='Password'
               name='password'
+              aria-label='password'
               type='password'
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <button
+              aria-label='submit-button'
               className={`btn ${
                 theme === 'dark' ? 'btn-dark' : 'btn-primary'
               } type='submit'`}
