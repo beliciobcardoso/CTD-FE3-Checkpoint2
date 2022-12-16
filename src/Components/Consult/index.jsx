@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { apiUrl } from '../../util/urlApi';
 import { convertDate } from '../../hooks/convertDate';
 import { convertTime } from '../../hooks/convertTime';
-import styles from './consultModal.module.css';
 
 const Consult = () => {
   const { theme } = useTheme();
