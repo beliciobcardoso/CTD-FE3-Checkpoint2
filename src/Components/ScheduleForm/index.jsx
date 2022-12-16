@@ -59,8 +59,13 @@ const ScheduleForm = () => {
       fetch(`${apiUrl}/consulta`, requestConfig).then((response) => {
         if (response.ok) {
           alert('Consulta agendada com sucesso!!!');
+        } else if (response.status === 403) {
+          alert(
+            'Tempo de login expirado por favor faça o logout e entre novamente!'
+          );
         } else {
           response.text().then((dataErro) => {
+            console.log(response.status);
             alert(dataErro);
           });
         }
